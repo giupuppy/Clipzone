@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClipZone - Game Clips</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background: #0a0a0a;
+            font-family: 'Exo 2', sans-serif;
+            color: white;
+        }
+        header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #1a1a1a;
+        }
+        .logo {
+            max-width: 280px;
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.4));
+        }
+        main {
+            padding: 30px 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .clips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .clip {
+            background: #151515;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #2a2a2a;
+            transition: all 0.3s ease;
+        }
+        .clip:hover {
+            border-color: #00ff88;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+            transform: translateY(-4px);
+        }
+        video {
+            width: 100%;
+            display: block;
+        }
+        .clip-title {
+            padding: 12px;
+            font-weight: 700;
+            color: #bf00ff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="ClipZone" class="logo">
+    </header>
+    <main>
+        <div class="clips-grid" id="clipsContainer">
+            <!-- Le clip vengono caricate qui da clips.json -->
+        </div>
+    </main>
+    
+    <script>
+        fetch('clips.json')
+            .then(res => res.json())
+            .then(clips => {
+                const container = document.getElementById('clipsContainer');
+                clips.forEach(clip => {
+                    container.innerHTML += `
+                        <div class="clip">
+                            <video controls poster="${clip.thumbnail}">
+                                <source src="${clip.url}" type="video/mp4">
+                            </video>
+                            <div class="clip-title">${clip.title}</div>
+                        </div>
+                    `;
+                });
+            });
+    </script>
+</body>
+</html>
