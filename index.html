@@ -3,84 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClipZone - Game Clips</title>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;900&display=swap" rel="stylesheet">
+    <title>ClipZone</title>
     <style>
         body {
             margin: 0;
-            background: #0a0a0a;
-            font-family: 'Exo 2', sans-serif;
-            color: white;
-        }
-        header {
             padding: 20px;
+            background: #0a0a0a;
+            color: white;
+            font-family: Arial, sans-serif;
             text-align: center;
-            border-bottom: 2px solid #1a1a1a;
         }
         .logo {
-            max-width: 280px;
-            height: auto;
-            filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.4));
-        }
-        main {
-            padding: 30px 15px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .clips-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .clip {
-            background: #151515;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #2a2a2a;
-            transition: all 0.3s ease;
-        }
-        .clip:hover {
-            border-color: #00ff88;
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
-            transform: translateY(-4px);
-        }
-        video {
-            width: 100%;
+            max-width: 250px;
+            width: 80%;
+            margin: 20px auto;
             display: block;
         }
-        .clip-title {
-            padding: 12px;
-            font-weight: 700;
-            color: #bf00ff;
+        video {
+            max-width: 90%;
+            width: 600px;
+            margin: 30px auto;
+            display: block;
+            border: 2px solid #00ff88;
+            border-radius: 12px;
+        }
+        h1 {
+            color: #00ff88;
+            text-shadow: 0 0 10px #00ff88;
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="ClipZone" class="logo">
-    </header>
-    <main>
-        <div class="clips-grid" id="clipsContainer">
-            <!-- Le clip vengono caricate qui da clips.json -->
-        </div>
-    </main>
+    <img src="IMG-20260410-WA0005.jpg" alt="Logo ClipZone" class="logo">
     
-    <script>
-        fetch('clips.json')
-            .then(res => res.json())
-            .then(clips => {
-                const container = document.getElementById('clipsContainer');
-                clips.forEach(clip => {
-                    container.innerHTML += `
-                        <div class="clip">
-                            <video controls poster="${clip.thumbnail}">
-                                <source src="${clip.url}" type="video/mp4">
-                            </video>
-                            <div class="clip-title">${clip.title}</div>
-                        </div>
-                    `;
-                });
-            });
-    </script>
+    <h1>ClipZone</h1>
+    
+    <video src="Video.mp4" controls autoplay muted loop></video>
+
 </body>
 </html>
